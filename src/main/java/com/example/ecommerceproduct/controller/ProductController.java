@@ -28,6 +28,12 @@ public class ProductController {
         productService.addProduct(productRequest);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateProduct(@PathVariable(name = "id") long id, @RequestBody @Valid ProductRequest productRequest) {
+        productService.updateProduct(id, productRequest);
+    }
+
     @GetMapping("/{id}")
     public ProductResponse getProduct(@PathVariable long id) {
         return productService.getProduct(id);

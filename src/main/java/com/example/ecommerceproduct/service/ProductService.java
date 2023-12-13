@@ -33,4 +33,11 @@ public class ProductService {
     public ProductResponse getProduct(long id) {
         return productRepository.findById(id).map(ProductResponse::fromEntity).orElseThrow(() -> new RuntimeException("Error"));
     }
+
+    public void updateProduct(long id, ProductRequest productRequest) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Error"));
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        productRepository.save(product);
+    }
 }
